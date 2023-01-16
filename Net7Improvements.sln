@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E840D0E-A9F1-4110-A8F8-667027748BA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net7-improvements", "net7-improvements", "{391F62BA-1F64-4E9A-ABD8-4704BFCC9B1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "signalr-client-source-generator", "signalr-client-source-generator", "{FD6FF136-76A4-4184-8610-83394555F4C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "src\net7-improvements\signalr-client-source-generator\Server\Server.csproj", "{818B69C7-9989-4E7A-9106-561C5841C7F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{6766E887-6E44-413E-AD54-62B8E0B84224}"
+	ProjectSection(SolutionItems) = preProject
+		src\net7-improvements\signalr-client-source-generator\README.md = src\net7-improvements\signalr-client-source-generator\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{F20B8B49-08F7-46B3-A22F-6DF6BDAA7218}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Contracts", "src\net7-improvements\signalr-client-source-generator\Server.Contracts\Server.Contracts.csproj", "{988FD4EA-7217-4B9E-B3E9-7833C2C3EF49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Console", "src\net7-improvements\signalr-client-source-generator\Client.Console\Client.Console.csproj", "{F1A9AD53-194B-457C-BBC7-0D1F9A4D7AC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{818B69C7-9989-4E7A-9106-561C5841C7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818B69C7-9989-4E7A-9106-561C5841C7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818B69C7-9989-4E7A-9106-561C5841C7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818B69C7-9989-4E7A-9106-561C5841C7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988FD4EA-7217-4B9E-B3E9-7833C2C3EF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988FD4EA-7217-4B9E-B3E9-7833C2C3EF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988FD4EA-7217-4B9E-B3E9-7833C2C3EF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988FD4EA-7217-4B9E-B3E9-7833C2C3EF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A9AD53-194B-457C-BBC7-0D1F9A4D7AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A9AD53-194B-457C-BBC7-0D1F9A4D7AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A9AD53-194B-457C-BBC7-0D1F9A4D7AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A9AD53-194B-457C-BBC7-0D1F9A4D7AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{391F62BA-1F64-4E9A-ABD8-4704BFCC9B1A} = {8E840D0E-A9F1-4110-A8F8-667027748BA3}
+		{FD6FF136-76A4-4184-8610-83394555F4C0} = {391F62BA-1F64-4E9A-ABD8-4704BFCC9B1A}
+		{818B69C7-9989-4E7A-9106-561C5841C7F4} = {FD6FF136-76A4-4184-8610-83394555F4C0}
+		{6766E887-6E44-413E-AD54-62B8E0B84224} = {FD6FF136-76A4-4184-8610-83394555F4C0}
+		{988FD4EA-7217-4B9E-B3E9-7833C2C3EF49} = {FD6FF136-76A4-4184-8610-83394555F4C0}
+		{F1A9AD53-194B-457C-BBC7-0D1F9A4D7AC7} = {FD6FF136-76A4-4184-8610-83394555F4C0}
+	EndGlobalSection
+EndGlobal
