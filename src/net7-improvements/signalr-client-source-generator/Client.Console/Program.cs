@@ -1,28 +1,30 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Reflection.Metadata;
-using Client.Console.Configurations;
+﻿using Client.Console.Configurations;
 using Client.Console.Extensions;
-using Client.Console.HubClients;
-using Microsoft.AspNetCore.SignalR.Client;
+using Client.Console.Factories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Server.Contracts;
-using Server.Contracts.ChatHub;
 
 var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
 var serviceCollection = new ServiceCollection()
-    .Configure<HubConfiguration>(configuration.GetSection(nameof(HubConfiguration)));
+    .AddCustomOptions(configuration)
+    .AddSingleton<SignalRRegistrationFactory>();
 
 var serviceProvider = serviceCollection.BuildServiceProvider();
+
 var hubOpt = serviceProvider.GetRequiredService<IOptionsMonitor<HubConfiguration>>();
 if (hubOpt == null)
     throw new Exception($"Не указана конфигурация приложения {nameof(HubConfiguration)}");
 var hubCfg = hubOpt.CurrentValue;
+
+var appOpt = serviceProvider.GetRequiredService<IOptionsMonitor<AppConfiguration>>();
+if (appOpt == null)
+    throw new Exception($"Не указана конфигурация приложения {nameof(AppConfiguration)}");
+var appCfg = appOpt.CurrentValue;
+
 var cts = new CancellationTokenSource();
 var ct = cts.Token;
 
@@ -43,23 +45,15 @@ else
     Console.WriteLine($"Здравствуйте {hubCfg.CurrentUserName}");
 }
 
-var _hubConnection = new HubConnectionBuilder()
-    .WithUrl(hubCfg.ChatHubAddress, opt =>
-    {
-        opt.Headers.Add(new (Constants.Headers.UserNameHeader, hubCfg.CurrentUserName));
-    })
-    .WithAutomaticReconnect()
-    .Build();
-var _serverConnection = _hubConnection
-    .ServerProxy<IChatHubServer>();
-var _clientConnection = _hubConnection
-    .ClientRegistration<IChatHubClient>(new ChatHubHubClient(hubOpt));
-            
-await _hubConnection.StartAsync(ct);
+var factory = serviceProvider.GetRequiredService<SignalRRegistrationFactory>();
+var connection = factory.RegisterSignalRConnection(appCfg.SignalRRegistrationType);
+connection.DoRegistration();
+
+await connection.StartAsync(ct);
 
 while (!ct.IsCancellationRequested)
 {
     var message = Console.ReadLine();
     if(!string.IsNullOrWhiteSpace(message))
-        await _serverConnection.SendMessageAsync(hubCfg.CurrentUserName, message);
+        await connection.SendMessageAsync(hubCfg.CurrentUserName, message);
 }
