@@ -32,7 +32,7 @@ public class SourceGeneratorSignalRRegistrator : ISignalRRegistrator
             .Build();
         _serverConnection = _hubConnection
             .ServerProxy<IChatHubServer>();
-        _hubConnection.ClientRegistration<IChatHubClient>(new ChatHubHubClient(_hubOptions));
+        _hubConnection.ClientRegistration<IChatHubClient>(new ChatHubClient(_hubOptions));
         
         return true;
     }

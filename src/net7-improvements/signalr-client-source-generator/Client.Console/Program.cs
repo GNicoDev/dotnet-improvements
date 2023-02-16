@@ -1,4 +1,6 @@
-﻿using Client.Console.Configurations;
+﻿#region common registration
+
+using Client.Console.Configurations;
 using Client.Console.Extensions;
 using Client.Console.Factories;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +29,7 @@ var appCfg = appOpt.CurrentValue;
 
 var cts = new CancellationTokenSource();
 var ct = cts.Token;
+#endregion
 
 if (string.IsNullOrWhiteSpace(hubCfg.CurrentUserName))
 {

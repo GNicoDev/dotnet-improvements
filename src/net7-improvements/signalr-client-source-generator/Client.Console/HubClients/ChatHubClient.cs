@@ -5,11 +5,11 @@ using Server.Contracts.ChatHub;
 namespace Client.Console.HubClients;
 
 /// <inheritdoc cref="IChatHubClient"/>
-public class ChatHubHubClient : IChatHubClient
+public class ChatHubClient : IChatHubClient
 {
     private HubConfiguration _hubConfiguration;
     
-    public ChatHubHubClient(IOptionsMonitor<HubConfiguration> hubConfiguration)
+    public ChatHubClient(IOptionsMonitor<HubConfiguration> hubConfiguration)
     {
         _hubConfiguration = hubConfiguration.CurrentValue;
         hubConfiguration.OnChange(configuration => _hubConfiguration = configuration);
